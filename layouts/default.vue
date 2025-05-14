@@ -1,6 +1,7 @@
 <template>
-    <div>
-        <p>Дефолтный шаблон</p>
-        <slot/>
+    <div class="">
+        <slot />
     </div>
 </template>
+
+<style scoped></style>
