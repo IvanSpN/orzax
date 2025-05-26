@@ -1,19 +1,6 @@
-<!-- <template>
-    <section
-        class="h-screen bg-cover bg-center flex items-center justify-center mx-auto mb-8"
-        style="background-image: url('/assets/orzax_main_banner.webp')"
-    >
-    <div class="container">
-        <h1 class="text-white text-5xl my-5">Пищевые добавки Orzax</h1>
-        <h2 class="text-white text-2xl my-16">Созданы Природой и Усовершенствованы Наукой Для Максимальной Поддержки Организма</h2>
-        <button class="bg-amber-50 p-2 rounded-md py-2 px-5">ОТКРЫТЬ КАТАЛОГ</button>
-    </div>
-    </section>
-</template>
- -->
 <template>
     <section
-        class="h-screen bg-cover bg-center flex items-center  mb-8"
+        class="h-screen bg-cover bg-center flex items-center mb-8"
         style="background-image: url('/assets/orzax_main_banner.webp')"
     >
         <transition name="fade-up">
@@ -22,13 +9,14 @@
                 <h2 class="text-white text-2xl my-16">
                     Созданы Природой и Усовершенствованы Наукой Для Максимальной Поддержки Организма
                 </h2>
-                <button class="bg-amber-50 p-2 rounded-md py-2 px-5">ОТКРЫТЬ </button>
+                <NuxtLink to="/shop">
+                    <button class="bg-amber-50 p-2 rounded-md py-2 px-5 cursor-pointer">ОТКРЫТЬ</button>
+                </NuxtLink>
             </div>
         </transition>
     </section>
 </template>
 <script setup>
-import { ref, onMounted } from 'vue'
 
 const show = ref(false)
 

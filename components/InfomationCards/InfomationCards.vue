@@ -1,7 +1,7 @@
 <template>
     <section class="container parent mx-auto gap-4 h-[600px] max-w-[1200px]">
-        <div class="div1 relative max-w-[380px] max-h-[290px] rounded-4xl">
-            <img class=" rounded-4xl " src="/public/assets/baner_about_us.webp" width="380" height="290" alt=""/>
+        <div class="div1 relative max-w-[380px]  rounded-4xl overflow-hidden">
+            <img class=" rounded-4xl h-full object-cover transition-transform duration-300 hover:scale-105" src="/public/assets/baner_about_us.webp" width="380" height="290" alt=""/>
             <div class="font-bold text-3xl absolute top-[30px] left-[20px] ">
                 <h3 class="font-bold text-3xl">О нас</h3>
                 <p class="font-bold text-[16px]">Объеденяем пути к здоровью</p>

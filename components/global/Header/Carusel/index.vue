@@ -1,12 +1,16 @@
 <template>
-    <div class="bg-[#73BC20] text-white overflow-hidden h-[30px]">
-        <transition-group name="slide" tag="div" class="relative w-fit mx-auto p-1">
-            <p :key="currentPhrase" class="absolute whitespace-nowrap">
-                {{ currentPhrase }}
-            </p>
-        </transition-group>
-    </div>
+  <div class="bg-[#73BC20] text-white overflow-hidden h-[30px] relative">
+    <transition-group name="slide" tag="div">
+      <p
+        :key="currentPhrase"
+        class="absolute left-1/2 transform -translate-x-1/2 whitespace-nowrap"
+      >
+        {{ currentPhrase }}
+      </p>
+    </transition-group>
+  </div>
 </template>
+
 
 <script setup>
 

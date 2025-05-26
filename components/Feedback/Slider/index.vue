@@ -141,18 +141,17 @@
 </template>
 
 <script setup>
-import { Swiper, SwiperSlide } from 'swiper/vue'
-import { Pagination, Navigation } from 'swiper/modules'
-import { onMounted, watch, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useProductsStore } from '@/stores/products'
+
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import { Pagination, Navigation } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 import 'swiper/css/zoom'
 
-const videoStarted = ref([false, false, false, false, false, false, false]) // Массив для отслеживания, на каком слайде видео запущено
-
+const videoStarted = ref([false, false, false, false, false, false, false])
 const videoSrc1 = 'https://ru.orzax.com/wp-content/uploads/2024/09/FeedF6.mp4'
 const videoSrc2 = 'https://ru.orzax.com/wp-content/uploads/2024/09/FeedF7.mp4'
 const videoSrc3 = 'https://ru.orzax.com/wp-content/uploads/2024/09/FeedF4.mp4'
@@ -161,38 +160,28 @@ const videoSrc5 = 'https://ru.orzax.com/wp-content/uploads/2024/09/FeedF2.mp4'
 const videoSrc6 = 'https://ru.orzax.com/wp-content/uploads/2024/09/FeedF2.mp4'
 const videoSrc7 = 'https://ru.orzax.com/wp-content/uploads/2024/09/FeedF15.mp4'
 
-// Функция для запуска видео на конкретном слайде
 const startVideo = index => {
-    videoStarted.value[index] = true // Устанавливаем значение для нужного индекса
+    videoStarted.value[index] = true
 }
 const router = useRouter()
+
 const productsStore = useProductsStore()
-const activeIndex = ref(0) // Храним индекс активного слайда
+
+const activeIndex = ref(0)
 
 const modules = [Pagination, Navigation]
 
 onMounted(() => {
     productsStore.fetchProducts()
-    console.log('Продукты из стора:', productsStore.products)
 })
 
 watch(
     () => productsStore.products,
-    newProducts => {
-        console.log('Продукты обновились:', newProducts)
-    }
+    newProducts => {}
 )
 
 const goToProduct = productId => {
     router.push(`/product/${productId}`)
-}
-
-const onSwiper = swiper => {
-    console.log(swiper)
-}
-
-const onSlideChange = () => {
-    console.log('slide change')
 }
 </script>
 
@@ -203,7 +192,7 @@ const onSlideChange = () => {
     position: relative;
     padding-bottom: 40px;
     display: flex;
-    justify-content: center; /* Горизонтальное выравнивание */
+    justify-content: center;
     align-items: center;
 }
 
@@ -223,7 +212,6 @@ const onSlideChange = () => {
 
 .slide-content img {
     max-width: 100%;
-    /* height: 100%; */
     border-radius: 10px;
 }
 .slide-content video {
@@ -322,12 +310,11 @@ const onSlideChange = () => {
 }
 :deep(.swiper-button-next::after),
 :deep(.swiper-button-prev::after) {
-  color: black;
-  font-size: 20px;
-  font-weight: bold;
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
 }
 :deep(.swiper-pagination-bullet) {
     background: black;
-
 }
 </style>

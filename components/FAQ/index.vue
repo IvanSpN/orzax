@@ -1,5 +1,5 @@
 <template>
-    <FAQAccordion :items="accordionItems">
+    <Accordion :items="accordionItems">
         <template #content-0>
             <p class="m-4">
                 Да, у компании Глобал Витаминс подписан официальный контракт напрямую с холдингом, и мы являемся
@@ -81,7 +81,7 @@
                 врачом.
             </p>
         </template>
-    </FAQAccordion>
+    </Accordion>
 </template>
 
 <script setup>

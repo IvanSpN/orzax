@@ -3,7 +3,6 @@ import RunningLine from '~/components/RunningLine/RunningLine.vue'
 </script>
 
 <template>
-    <Header />
     <MainInfo />
     <WorkdaysNotice />
     <SliderProducts />
@@ -11,5 +10,4 @@ import RunningLine from '~/components/RunningLine/RunningLine.vue'
     <RunningLine />
     <Feedback />
     <FAQ />
-    <Footer />
 </template>
