@@ -93,7 +93,7 @@ onMounted(() => {
 
 
 async function selectCategory(category: string | null) {
-    store.setCategory(category)
+    productsStore.setCategory(category)
 }
 
 watch(
