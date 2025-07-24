@@ -11,7 +11,6 @@
   </div>
 </template>
 
-
 <script setup>
 
 const phrases = [

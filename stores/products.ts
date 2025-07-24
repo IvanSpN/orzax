@@ -1,9 +1,10 @@
 import { defineStore } from 'pinia'
+import { useApiFetch } from '@/utils/api'
 
 export interface Product {
     id: number
     name: string
-    category: string
+    categoryId: number
     description: string
     advantages: string[]
     application: {
@@ -27,34 +28,61 @@ export interface Product {
 
 interface ProductsState {
     products: Product[]
-    selectedCategory: string | null
+    selectedCategory: number | null
+    isLoading: boolean
+    error: string | null
 }
 
 export const useProductsStore = defineStore('products', {
     state: (): ProductsState => ({
         products: [],
         selectedCategory: null,
+        isLoading: true,
+        error: null,
     }),
     actions: {
         async fetchProducts() {
-            const nuxtApp = useNuxtApp()
-            const api = nuxtApp.$api
-            try {
-                const response = await api.get('/products')
-                this.products = response.data
-            } catch (error) {
-                console.error('Ошибка при загрузке продуктов:', error)
+            console.log('Fetching products...')
+
+            const response = await useApiFetch<Product[]>('/products')
+
+            console.log('API Response:', response)
+
+            this.products = response.data || []
+            this.error = response.error
+            this.isLoading = response.isLoading
+
+            if (response.success) {
+                console.log('Products loaded successfully:', response.data)
+            } else {
+                console.error('Failed to load products:', response.error)
             }
         },
 
-        setCategory(category: string | null) {
+        setCategory(category: number | null) {
             this.selectedCategory = category
         },
+
+        clearError() {
+            this.error = null
+        }
     },
     getters: {
         filteredProducts(state) {
             if (!state.selectedCategory) return state.products
-            return state.products.filter((product: any) => product.category === state.selectedCategory)
+            return state.products.filter((product: Product) => product.categoryId === state.selectedCategory)
         },
+
+        hasError(state) {
+            return !!state.error
+        },
+
+        isEmpty(state) {
+            return state.products.length === 0 && !state.isLoading
+        },
+
+        isSuccess(state) {
+            return state.products.length > 0 && !state.error
+        }
     },
 })

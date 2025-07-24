@@ -69,6 +69,7 @@
 </template>
 
 <script setup lang="ts">
+
 interface Props {
     variant?: 'default' | 'shop'
 }
@@ -80,7 +81,7 @@ const props = withDefaults(defineProps<Props>(), {
 const footerClasses = computed(() => {
     switch (props.variant) {
         case 'shop':
-            return 'bg-white-900' 
+            return 'bg-white-900'
         case 'default':
         default:
             return 'bg-[#27272A]'

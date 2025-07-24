@@ -1,12 +1,13 @@
 <template>
     <HeaderCarusel />
-    <header class=" p-2 sticky top-[0px] w-full bg-white  h-[80px] z-50 ">
+    <header class="p-2 sticky top-[0px] w-full bg-white h-[80px] z-50">
         <div class="container flex gap-5 justify-between items-center mx-auto top-0">
             <div>
                 <NuxtLink to="/">
                     <img src="/assets/img/Orzax_Logo.webp" alt="logo" width="200" height="60" />
                 </NuxtLink>
             </div>
+
             <ul class="flex gap-4 relative" ref="menuWrapperRef">
                 <li class="cursor-pointer p-1">О нас</li>
                 <li class="cursor-pointer p-1" @mouseenter="showMenu" @mouseleave="scheduleHide">
@@ -21,7 +22,13 @@
                     leave-from-class="opacity-100"
                     leave-to-class="opacity-0"
                 >
-                    <HeaderCatalogMenu v-if="isMenuVisible" @hide="hideMenu" @mouseenter="cancelHide" />
+                    <HeaderCatalogMenu
+                        v-if="isMenuVisible"
+                        @hide="hideMenu"
+                        @mouseenter="cancelHide"
+                        :categories="categories"
+                    />
+
                 </Transition>
                 <li class="cursor-pointer p-1">Опт</li>
                 <li class="cursor-pointer p-1">Бонусная Программа</li>
@@ -46,34 +53,37 @@
     </header>
 </template>
 
-<script setup>
+<script setup lang="ts">
+
 const isMenuVisible = ref(false)
-const menuWrapperRef = ref(null)
-const productsStore = useProductsStore()
+const menuWrapperRef = ref<HTMLElement | null>(null)
+const categoriesStore = useCategoriesStore()
+const { categories } = storeToRefs(categoriesStore)
 
-
-let hideTimeout
+let hideTimeout: ReturnType<typeof setTimeout>
 
 function showMenu() {
     isMenuVisible.value = true
     clearTimeout(hideTimeout)
 }
 
-function hideMenu() {
+function hideMenu(): void {
     isMenuVisible.value = false
 }
 
-function scheduleHide() {
+function scheduleHide(): void {
     hideTimeout = setTimeout(() => {
         isMenuVisible.value = false
     }, 1000)
 }
 
-function cancelHide() {
+function cancelHide(): void {
     clearTimeout(hideTimeout)
 }
 
-
 useClickOutside(menuWrapperRef, hideMenu)
 
+onMounted(() => {
+    categoriesStore.fetchCategories()
+})
 </script>
