@@ -45,10 +45,6 @@ onMounted(() => {
     productsStore.fetchProducts()
 })
 
-async function selectCategory(category: string | null) {
-    store.setCategory(category)
-}
-
 watch(
     () => route.fullPath,
     newPath => {

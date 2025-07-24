@@ -52,6 +52,7 @@
 </template>
 
 <script setup lang="ts">
+
 interface Props {
     variant?: 'default' | 'shop'
 }

@@ -20,9 +20,13 @@ export const useSubscriptionStore = defineStore('subscription', {
             const api = nuxtApp.$api
 
             try {
-                const response = await api.post('/subscription', dto)
+                const data = await $fetch('/subscription', {
+                    method: 'POST',
+                    body: dto
+                })
+
                 this.subscribers.push(dto)
-                return response.data
+                return data
             } catch (error) {
                 console.error('Ошибка при загрузке продуктов:', error)
             }

@@ -15,7 +15,9 @@
 </template>
 
 <script setup>
+
 const helloArray = ['Без сахара', 'Без ГМО', 'Без лактозы', 'Без глютена', 'Соответсвие GMP', 'ISO сертификат']
+
 </script>
 
 <style>
